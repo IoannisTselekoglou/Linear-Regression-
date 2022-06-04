@@ -44,12 +44,13 @@ for j in y:
 
 for i,j in enumerate(y):
     if j > f[i]:
-        plt.vlines(x[i], f[i], y[i])
+        plt.vlines(x[i], f[i], y[i],colors='r', linestyles='solid')
     else:
-        plt.vlines(x[i], y[i], f[i])
+        plt.vlines(x[i], y[i], f[i],colors='r', linestyles='solid')
 
 
-plt.plot(x,f,":","r")
+plt.plot(x,f,"-")
+plt.savefig("test_linear_mrse")
 plt.show()
 
 #plt.savefig("figure1")
