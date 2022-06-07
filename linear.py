@@ -58,7 +58,7 @@ def distance(y,y_l):
         sum_len.append((y[i]-y_l[i])**2)
     return sum_len
 
-def mrse(distance,x):
+def mse(distance,x):
     return ((1/len(x)) * sum(distance))
 
 plt.title("Linear Regression for Linear Dataset")
