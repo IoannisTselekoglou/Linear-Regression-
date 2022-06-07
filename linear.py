@@ -2,12 +2,13 @@ import matplotlib.pyplot as plt
 import numpy as np
 import random
 from scipy import interpolate 
+from sklearn.metrics import mean_squared_error
 var = 20
 
 #x = [random.randrange(1,var,2) for i in range(var)]
 #y = [2 + 2*x[i] + random.randrange(1,var,2) for i in range(var)]
 
-
+#create rnd linear dataset
 x = np.arange(var)
 delta = np.random.uniform(-10,10,size=(var,))
 y = 4 + x*3 + delta
@@ -20,7 +21,6 @@ for i,j in enumerate(x):
 #problem: because the numbers are generated randomly, there a multiple x values with different y values.. how should i fix this shit
 
 plt.scatter(x,y)
-x = list(set(x))
 
 ynew = [dic[x[0]],dic[x[len(x)-1]]]
 xnew = [x[0],x[len(x)-1]]
@@ -33,8 +33,9 @@ xnew = [x[0],x[len(x)-1]]
 steigung = (ynew[0]-ynew[1])/(xnew[0]-xnew[1])
 
 f = []
+add = 8
 for i,j in enumerate(x):
-    f.append(dic[x[0]] + steigung * x[i])
+    f.append(add + dic[x[0]] + steigung * x[i])
 
 for j in y:
     if len(y) == len(x):
@@ -50,22 +51,21 @@ for i,j in enumerate(y):
 
 #write this a bit prettier bruv, very ugly solution so far  
 
-def distance(x,y,y_l):
+
+def distance(y,y_l):
     sum_len = []  
-    for i,j in enumerate(x):
+    for i,j in enumerate(y):
         sum_len.append((y[i]-y_l[i])**2)
     return sum_len
 
 def mrse(distance,x):
-    return (1/len(x)) * sum(distance) 
+    return ((1/len(x)) * sum(distance))
 
-print(mrse(distance(x,y,f),x))
+plt.title("Linear Regression for Linear Dataset")
+plt.plot(x,f,"-")
+plt.show()
 
-#plt.plot(x,f,"-")
 #plt.savefig("assets/test_linear_mrse")
-#plt.show()
-
-#plt.savefig("figure1")
 
 
 
