@@ -61,10 +61,12 @@ def distance(y,y_l):
 def mse(distance,x):
     return ((1/len(x)) * sum(distance))
 
-plt.savefig("assets/test_linear_mse")
+
 plt.title("Linear Regression visulasitazion for Linear Dataset")
 plt.plot(x,f,"-")
+plt.savefig("assets/test_linear_mse.png")
 plt.show()
+plt.close()
 
 
 
