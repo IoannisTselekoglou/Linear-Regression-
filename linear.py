@@ -46,15 +46,26 @@ for i,j in enumerate(y):
     if j > f[i]:
         plt.vlines(x[i], f[i], y[i],colors='r', linestyles='solid')
     else:
-        plt.vlines(x[i], y[i], f[i],colors='r', linestyles='solid')
+        plt.vlines(x[i], y[i], f[i],colors='y', linestyles='solid')
 
+#write this a bit prettier bruv, very ugly solution so far  
 
-plt.plot(x,f,"-")
-plt.savefig("test_linear_mrse")
-plt.show()
+def distance(x,y,y_l):
+    sum_len = []  
+    for i,j in enumerate(x):
+        sum_len.append((y[i]-y_l[i])**2)
+    return sum_len
+
+def mrse(distance,x):
+    return (1/len(x)) * sum(distance) 
+
+print(mrse(distance(x,y,f),x))
+
+#plt.plot(x,f,"-")
+#plt.savefig("assets/test_linear_mrse")
+#plt.show()
 
 #plt.savefig("figure1")
-
 
 
 
