@@ -33,7 +33,7 @@ xnew = [x[0],x[len(x)-1]]
 steigung = (ynew[0]-ynew[1])/(xnew[0]-xnew[1])
 
 f = []
-add = 8
+add = 3
 for i,j in enumerate(x):
     f.append(add + dic[x[0]] + steigung * x[i])
 
@@ -47,7 +47,7 @@ for i,j in enumerate(y):
     if j > f[i]:
         plt.vlines(x[i], f[i], y[i],colors='r', linestyles='solid')
     else:
-        plt.vlines(x[i], y[i], f[i],colors='y', linestyles='solid')
+        plt.vlines(x[i], y[i], f[i],colors='r', linestyles='solid')
 
 #write this a bit prettier bruv, very ugly solution so far  
 
@@ -61,11 +61,11 @@ def distance(y,y_l):
 def mse(distance,x):
     return ((1/len(x)) * sum(distance))
 
-plt.title("Linear Regression for Linear Dataset")
+plt.title("Linear Regression visulasitazion for Linear Dataset")
 plt.plot(x,f,"-")
 plt.show()
 
-#plt.savefig("assets/test_linear_mrse")
+plt.savefig("assets/test_linear_mrse")
 
 
 
