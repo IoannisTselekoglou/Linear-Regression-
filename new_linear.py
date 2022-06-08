@@ -76,7 +76,7 @@ print(mse(distance(y,newf),x))
 plt.scatter(x,y)
 plt.title("Linear Regression visulasitazion for Linear Dataset")
 plt.plot(x,newf)
-plt.savefig("assets/test_linear_mse_1.png")
+plt.savefig("assets/test_linear_mse_1.png",dpi=50)
 plt.show()
 plt.close()
 
