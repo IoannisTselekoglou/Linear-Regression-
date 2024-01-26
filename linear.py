@@ -31,7 +31,7 @@ def visualize_linear_function(x, y, slope, start_value, title, save_path):
     plt.xlabel('X-axis')
     plt.ylabel('Y-axis')
     plt.legend()
-    plt.savefig(save_path, dpi=50)
+    plt.savefig(save_path, dpi=100)
     plt.show()
     plt.close()
 
@@ -59,7 +59,7 @@ def visualize_residuals(x, y_true, y_best_fit, y_random_line, save_path):
     plt.xlabel('X-axis')
     plt.ylabel('Y-axis')
     plt.legend()
-    plt.savefig(save_path, dpi=50)
+    plt.savefig(save_path, dpi=100)
     plt.show()
     plt.close()
 
