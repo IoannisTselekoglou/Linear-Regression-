@@ -30,10 +30,11 @@ When visualizing the graphs, we can observe the distance between the actual data
 
 ![image](/assets/Residuals_Visualization.png)
 
-Comparing the MSE values, we can see that the algorithm for calculating the best fit is significantly better than, for example, the random line.
+Comparing the mean squared error values, we can see that the algorithm for calculating the best fit is significantly better than, for example, the random line.
 
-- Mean Squared Error (Best Fit): 22.6364
-- Mean Squared Error (Random Line): 121.6121
+- MSE (Best Fit): 34.1946
+- MSE (Random Line): 71.7100
+
 
 ## Dependencies
 

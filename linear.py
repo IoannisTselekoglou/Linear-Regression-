@@ -20,14 +20,11 @@ def linear_function(x, slope, start_value):
 def calculate_best_fit(x, slope, start_value):
     return linear_function(x, slope, start_value)
 
-def calculate_random_line(x):
-    return np.random.uniform(-10, 10) * x + np.random.uniform(-10, 10)
-
 def visualize_linear_function(x, y, slope, start_value, title, save_path):
     best_fit = calculate_best_fit(x, slope, start_value)
-    random_line = calculate_random_line(x)
+    random_line = np.random.uniform(0, 10) * x + np.random.uniform(0, 10)
 
-    plt.scatter(x, y)
+    plt.scatter(x, y, label="Random Linear Dataset")
     plt.plot(x, best_fit, label='Best Fit Line', color='r')
     plt.plot(x, random_line, label='Random Line', linestyle='--', color='g')
     plt.title(title)
@@ -38,13 +35,15 @@ def visualize_linear_function(x, y, slope, start_value, title, save_path):
     plt.show()
     plt.close()
 
+    return best_fit, random_line
+
 def calculate_residuals(y_true, y_pred):
     return y_true - y_pred
 
 def calculate_mse(y_true, y_pred):
     return mean_squared_error(y_true, y_pred)
 
-def visualize_residuals(x, y_true, y_best_fit, y_random_line):
+def visualize_residuals(x, y_true, y_best_fit, y_random_line, save_path):
     residuals_best_fit = calculate_residuals(y_true, y_best_fit)
     residuals_random_line = calculate_residuals(y_true, y_random_line)
 
@@ -60,6 +59,7 @@ def visualize_residuals(x, y_true, y_best_fit, y_random_line):
     plt.xlabel('X-axis')
     plt.ylabel('Y-axis')
     plt.legend()
+    plt.savefig(save_path, dpi=50)
     plt.show()
     plt.close()
 
@@ -69,13 +69,11 @@ def main():
     slope, start_value = least_squares_fit(x, y)
 
     title = "Linear Regression Visualization for Linear Dataset"
-    save_path = "assets/Visualization_Linear_Dataset.png"
-    visualize_linear_function(x, y, slope, start_value, title, save_path)
+    save_path_1 = "assets/Regression_Visulaization.png"
+    best_fit, random_line = visualize_linear_function(x, y, slope, start_value, title, save_path_1)
 
-    best_fit = calculate_best_fit(x, slope, start_value)
-    random_line = calculate_random_line(x)
-
-    visualize_residuals(x, y, best_fit, random_line)
+    save_path_2 = "assets/Residiual_Visulaization.png"
+    visualize_residuals(x, y, best_fit, random_line, save_path_2)
 
     mse_best_fit = calculate_mse(y, best_fit)
     mse_random_line = calculate_mse(y, random_line)
