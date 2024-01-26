@@ -10,7 +10,7 @@
 
 ## Introduction
 
-This Python project implements Linear Regression algorithms from scratch. The primary goal is to have an comprehensible implementation of these fundamental machine learning algorithms 
+This Python project implements Linear Regression algorithms from scratch. The primary goal is to have a comprehensible implementation of these fundamental machine learning algorithms.
 
 ### Linear Regression
 
@@ -18,24 +18,29 @@ Linear Regression is a supervised learning algorithm designed for predicting con
 
 ## Examples
 
-To illustrate the usage of the implemented algorithms, we provide the following examples:
+To illustrate the usage of the implemented algorithms, let us run the following Python script and visualize the output:
 
-- [linear.py](examples/example1.py): Demonstrates Linear Regression applied to a random dataset.
+- [linear.py](/linear.py): Demonstrates Linear Regression applied to a random dataset.
 
+![image](/assets/Regression_Visulaization.png)
 
-## Conclusion 
+## Conclusion
 
-When Visulaizing the Graphs, we can see the distance between the acutall Datapoints and the linear lines.
-Comparing the MSE Values, we can see that the algoritihgm for calculating the best ift, is signifantly better than for example the random Line.
-Mean Squared Error (Best Fit): 22.6364
-Mean Squared Error (Random Line): 121.6121
+When visualizing the graphs, we can observe the distance between the actual datapoints and the linear lines.
 
+![image](/assets/Residuals_Visualization.png)
+
+Comparing the MSE values, we can see that the algorithm for calculating the best fit is significantly better than, for example, the random line.
+
+- Mean Squared Error (Best Fit): 22.6364
+- Mean Squared Error (Random Line): 121.6121
 
 ## Dependencies
-```bash
-$ pip install matplotlib.pyplot
+
+```bash pip install matplotlib
+$ pip install -U matplotlib
 $ pip install numpy
-$ pip install sklearn.scikit
+$ pip install -U scikit-learn
 ```
 
 ## License
