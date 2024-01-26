@@ -28,7 +28,8 @@ To illustrate the usage of the implemented algorithms, let us run the following 
 
 When visualizing the graphs, we can observe the distance between the actual datapoints and the linear lines.
 
-![image](/assets/Residuals_Visualization.png)
+![image](/assets/Residiual_Visulaization.png)
+
 
 Comparing the mean squared error values, we can see that the algorithm for calculating the best fit is significantly better than, for example, the random line.
 
