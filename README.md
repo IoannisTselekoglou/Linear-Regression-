@@ -1,20 +1,16 @@
 # Linear Regression 
 
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-
 ## Table of Contents
 
 - [Introduction](#introduction)
-- [Explanation](#explanation)
 - [Examples](#examples)
-- [Testing](#testing)
+- [Conclusion](#testing)
+- [Dependencies](#testing)
 - [License](#license)
 
 ## Introduction
 
-This Python project implements Linear Regression algorithms from scratch. The primary goal is to offer a clear and comprehensible implementation of these fundamental machine learning algorithms. It serves as a valuable resource for educational purposes or as a launching point for further research.
-
-## Explanation
+This Python project implements Linear Regression algorithms from scratch. The primary goal is to have an comprehensible implementation of these fundamental machine learning algorithms 
 
 ### Linear Regression
 
@@ -24,15 +20,23 @@ Linear Regression is a supervised learning algorithm designed for predicting con
 
 To illustrate the usage of the implemented algorithms, we provide the following examples:
 
-- [example1.py](examples/example1.py): Demonstrates Linear Regression applied to a synthetic dataset.
+- [linear.py](examples/example1.py): Demonstrates Linear Regression applied to a random dataset.
 
-Feel free to explore and run these examples to gain insights into how the algorithms perform under different scenarios.
 
-## Testing
+## Conclusion 
 
-Unit tests are crucial for ensuring the correctness of our implementations. We have included comprehensive test suites for both the Linear Regression and Gradient Descent algorithms.
+When Visulaizing the Graphs, we can see the distance between the acutall Datapoints and the linear lines.
+Comparing the MSE Values, we can see that the algoritihgm for calculating the best ift, is signifantly better than for example the random Line.
+Mean Squared Error (Best Fit): 22.6364
+Mean Squared Error (Random Line): 121.6121
 
-To run the tests, use the following command:
 
+## Dependencies
 ```bash
-$ python -m unittest discover tests
+$ pip install matplotlib.pyplot
+$ pip install numpy
+$ pip install sklearn.scikit
+```
+
+## License
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)

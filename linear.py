@@ -1,74 +1,88 @@
 import matplotlib.pyplot as plt
 import numpy as np
-import random
-from scipy import interpolate 
 from sklearn.metrics import mean_squared_error
-var = 20
 
-#x = [random.randrange(1,var,2) for i in range(var)]
-#y = [2 + 2*x[i] + random.randrange(1,var,2) for i in range(var)]
+def generate_linear_dataset(var):
+    x = np.arange(var)
+    delta = np.random.uniform(-10, 10, size=(var,))
+    y = 4 + x * 3 + delta
+    return x, y
 
-#create rnd linear dataset
-x = np.arange(var)
-delta = np.random.uniform(-10,10,size=(var,))
-y = 4 + x*3 + delta
+def least_squares_fit(x, y):
+    x_mean, y_mean = np.mean(x), np.mean(y)
+    slope_xy = np.sum((x - x_mean) * (y - y_mean)) / np.sum((x - x_mean)**2)
+    start_value = y_mean - slope_xy * x_mean
+    return slope_xy, start_value
 
-dic = {}
+def linear_function(x, slope, start_value):
+    return start_value + slope * x
 
-for i,j in enumerate(x):
-    dic[j] = y[i]
+def calculate_best_fit(x, slope, start_value):
+    return linear_function(x, slope, start_value)
 
-#problem: because the numbers are generated randomly, there a multiple x values with different y values.. how should i fix this shit
+def calculate_random_line(x):
+    return np.random.uniform(-10, 10) * x + np.random.uniform(-10, 10)
 
-plt.scatter(x,y)
+def visualize_linear_function(x, y, slope, start_value, title, save_path):
+    best_fit = calculate_best_fit(x, slope, start_value)
+    random_line = calculate_random_line(x)
 
-ynew = [dic[x[0]],dic[x[len(x)-1]]]
-xnew = [x[0],x[len(x)-1]]
+    plt.scatter(x, y)
+    plt.plot(x, best_fit, label='Best Fit Line', color='r')
+    plt.plot(x, random_line, label='Random Line', linestyle='--', color='g')
+    plt.title(title)
+    plt.xlabel('X-axis')
+    plt.ylabel('Y-axis')
+    plt.legend()
+    plt.savefig(save_path, dpi=50)
+    plt.show()
+    plt.close()
 
-#x_1,y_1 = plt.plot(xnew,ynew,1)
-#x_1_t = x_1.get_xdata()
-#x_plot_1,x_plot_2 = dic[x_1_t[0]], dic[x_1_t[1]]
-#steigung = (x_plot_2 - x_plot_1)/(x_1_t[1]-x_1_t[0])
+def calculate_residuals(y_true, y_pred):
+    return y_true - y_pred
 
-steigung = (ynew[0]-ynew[1])/(xnew[0]-xnew[1])
+def calculate_mse(y_true, y_pred):
+    return mean_squared_error(y_true, y_pred)
 
-f = []
-add = 3
-for i,j in enumerate(x):
-    f.append(add + dic[x[0]] + steigung * x[i])
+def visualize_residuals(x, y_true, y_best_fit, y_random_line):
+    residuals_best_fit = calculate_residuals(y_true, y_best_fit)
+    residuals_random_line = calculate_residuals(y_true, y_random_line)
 
-for j in y:
-    if len(y) == len(x):
-        break 
-    else:
-        y.remove(j)
+    plt.scatter(x, y_true, label='True Values')
+    plt.plot(x, y_best_fit, label='Best Fit Line', color='r')
+    plt.plot(x, y_random_line, label='Random Line', linestyle='--', color='g')
+    
+    for xi, yt, ybf, yrl in zip(x, y_true, y_best_fit, y_random_line):
+        plt.vlines(xi, yt, ybf, colors='gray', linestyles='dashed', alpha=0.5)
+        plt.vlines(xi, yt, yrl, colors='gray', linestyles='dotted', alpha=0.5)
 
-for i,j in enumerate(y):
-    if j > f[i]:
-        plt.vlines(x[i], f[i], y[i],colors='r', linestyles='solid')
-    else:
-        plt.vlines(x[i], y[i], f[i],colors='r', linestyles='solid')
+    plt.title('Visualizing Residuals')
+    plt.xlabel('X-axis')
+    plt.ylabel('Y-axis')
+    plt.legend()
+    plt.show()
+    plt.close()
 
-#write this a bit prettier bruv, very ugly solution so far  
+def main():
+    var = 20
+    x, y = generate_linear_dataset(var)
+    slope, start_value = least_squares_fit(x, y)
 
+    title = "Linear Regression Visualization for Linear Dataset"
+    save_path = "assets/Visualization_Linear_Dataset.png"
+    visualize_linear_function(x, y, slope, start_value, title, save_path)
 
-def distance(y,y_l):
-    sum_len = []  
-    for i,j in enumerate(y):
-        sum_len.append((y[i]-y_l[i])**2)
-    return sum_len
+    best_fit = calculate_best_fit(x, slope, start_value)
+    random_line = calculate_random_line(x)
 
-def mse(distance,x):
-    return ((1/len(x)) * sum(distance))
+    visualize_residuals(x, y, best_fit, random_line)
 
+    mse_best_fit = calculate_mse(y, best_fit)
+    mse_random_line = calculate_mse(y, random_line)
 
-plt.title("Linear Regression visulasitazion for Linear Dataset")
-plt.plot(x,f,"-")
-plt.savefig("assets/test_linear_mse.png")
-plt.show()
-plt.close()
+    print(f'MSE (Best Fit): {mse_best_fit:.4f}')
+    print(f'MSE (Random Line): {mse_random_line:.4f}')
 
-
-
-
+if __name__ == "__main__":
+    main()
 
