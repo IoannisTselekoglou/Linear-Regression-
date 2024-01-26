@@ -45,4 +45,7 @@ $ pip install -U scikit-learn
 ```
 
 ## License
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+- [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+- [NumPy](https://numpy.org): A open-source library for numerical computing in Python.
+- [Matplotlib](https://matplotlib.org): A open-source plotting library for Python. License.
+
